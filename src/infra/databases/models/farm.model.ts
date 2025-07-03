@@ -11,7 +11,7 @@ import { FarmerModel } from './farmer.model';
 @Entity()
 export class FarmModel {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
   @Column()
   name: string;
   @Column()

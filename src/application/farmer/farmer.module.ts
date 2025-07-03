@@ -7,6 +7,9 @@ import { FarmerRepository } from './farmer.repository';
 import { FarmModel } from 'src/infra/databases/models/farm.model';
 import { HarvestModel } from 'src/infra/databases/models/harvest.model';
 import { ValidateDocument } from 'src/domain/usecases/validate-document.usecase';
+import { FarmController } from '../farm/farm.controller';
+import { FarmService } from '../farm/farm.service';
+import { FarmRepository } from '../farm/farm.repository';
 
 @Module({
   imports: [
@@ -19,12 +22,18 @@ import { ValidateDocument } from 'src/domain/usecases/validate-document.usecase'
       database: 'agrobrain',
       entities: [FarmerModel, FarmModel, HarvestModel],
       synchronize: true,
-      dropSchema: true,
+      // dropSchema: true,
     }),
 
-    TypeOrmModule.forFeature([FarmerModel]),
+    TypeOrmModule.forFeature([FarmerModel, FarmModel]),
   ],
-  controllers: [FarmerController],
-  providers: [ValidateDocument, FarmerService, FarmerRepository],
+  controllers: [FarmerController, FarmController],
+  providers: [
+    ValidateDocument,
+    FarmerService,
+    FarmerRepository,
+    FarmService,
+    FarmRepository,
+  ],
 })
 export class FarmerModule {}

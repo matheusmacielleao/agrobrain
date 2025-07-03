@@ -5,7 +5,7 @@ export interface Farmer {
 }
 
 export interface Farm {
-  id: number;
+  id: string;
   name: string;
   city: string;
   state: string;
