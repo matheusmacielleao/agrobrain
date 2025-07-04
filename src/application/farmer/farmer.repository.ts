@@ -21,4 +21,15 @@ export class FarmerRepository {
       select: { documentNumber: true, name: true },
     });
   }
+
+  async deleteByDocumentNumber(documentNumber: string): Promise<void> {
+    await this.typeormRepo.delete(documentNumber);
+  }
+
+  async update(
+    documentNumber: string,
+    updateData: Partial<FarmerModel>,
+  ): Promise<FarmerModel> {
+    return await this.typeormRepo.save({ documentNumber, ...updateData });
+  }
 }
