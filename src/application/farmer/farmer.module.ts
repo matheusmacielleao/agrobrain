@@ -17,11 +17,11 @@ import { HarvestRepository } from '../harvest/harvest.repo';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '127.0.0.1',
-      port: 5432,
-      username: 'postgres',
-      password: 'admin',
-      database: 'agrobrain',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT || '5432'),
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [FarmerModel, FarmModel, HarvestModel],
       synchronize: true,
       // dropSchema: true,

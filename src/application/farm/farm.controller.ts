@@ -26,7 +26,6 @@ export class FarmController {
     @Param('documentNumber') documentNumber: string,
     @Body() payload: CreateFarmDto,
   ) {
-    console.log('createFarm', { documentNumber, payload });
     return this.farmService.create(documentNumber, {
       ...payload,
     });
