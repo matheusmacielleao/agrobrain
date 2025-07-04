@@ -4,6 +4,8 @@ import { FarmModel } from './farm.model';
 @Entity()
 export class HarvestModel {
   @PrimaryColumn()
+  farmId: string;
+  @PrimaryColumn()
   year: number;
   @PrimaryColumn()
   crop: string;

@@ -5,6 +5,7 @@ import { FarmRepository } from './farm.repository';
 import { AreaValuesInvalidError } from './errors/AreaValuesInvalidError';
 import { FarmModel } from 'src/infra/databases/models/farm.model';
 import { Injectable } from '@nestjs/common';
+
 @Injectable()
 export class FarmService {
   constructor(

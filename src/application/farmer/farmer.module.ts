@@ -10,6 +10,8 @@ import { ValidateDocument } from 'src/domain/usecases/validate-document.usecase'
 import { FarmController } from '../farm/farm.controller';
 import { FarmService } from '../farm/farm.service';
 import { FarmRepository } from '../farm/farm.repository';
+import { HarvestService } from '../harvest/harvest.service';
+import { HarvestRepository } from '../harvest/harvest.repo';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import { FarmRepository } from '../farm/farm.repository';
       // dropSchema: true,
     }),
 
-    TypeOrmModule.forFeature([FarmerModel, FarmModel]),
+    TypeOrmModule.forFeature([FarmerModel, FarmModel, HarvestModel]),
   ],
   controllers: [FarmerController, FarmController],
   providers: [
@@ -34,6 +36,8 @@ import { FarmRepository } from '../farm/farm.repository';
     FarmerRepository,
     FarmService,
     FarmRepository,
+    HarvestService,
+    HarvestRepository,
   ],
 })
 export class FarmerModule {}
