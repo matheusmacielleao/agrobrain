@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: Farmer API
+  version: 1.0.0
+  description: API for managing farmers
+servers:
+  - url: http://localhost:3000
+paths:
+  /farmers:
+    post:
+      summary: Create a new farmer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFarmerDto'
+      responses:
+        '201':
+          description: Farmer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FarmerModel'
+        '400':
+          description: Invalid document or document already used
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: Get all farmers
+      responses:
+        '200':
+          description: List of farmers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FarmerModel'
+  /farmers/{documentNumber}:
+    delete:
+      summary: Delete a farmer by document number
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Farmer deleted
+        '400':
+          description: Farmer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      summary: Update a farmer's name by document number
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditFarmerDto'
+      responses:
+        '200':
+          description: Farmer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FarmerModel'
+        '400':
+          description: Invalid document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Farmer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /farmers/{documentNumber}/farms:
+    get:
+      summary: Get all farms from a farmer
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of farms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FarmModel'
+    post:
+      summary: Create a new farm for a farmer
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFarmDto'
+      responses:
+        '200':
+          description: Farm created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FarmModel'
+  /farmers/{documentNumber}/farms/{farmId}:
+    get:
+      summary: Get a farm by ID
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: farmId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Farm found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FarmModel'
+        '404':
+          description: Farm not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /farmers/{documentNumber}/farms/{farmId}/harvests:
+    post:
+      summary: Create a harvest for a farm
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: farmId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateHarvestDto'
+      responses:
+        '200':
+          description: Harvest created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HarvestModel'
+    get:
+      summary: Get all harvests from a farm
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: farmId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of harvests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HarvestModel'
+  /farmers/{documentNumber}/farms/{farmId}/harvests/{harvestYear}:
+    get:
+      summary: Get a harvest by year from a farm
+      parameters:
+        - in: path
+          name: documentNumber
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: farmId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: harvestYear
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Harvest found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HarvestModel'
+components:
+  schemas:
+    CreateFarmDto:
+      type: object
+      properties:
+        name:
+          type: string
+        areaHectares:
+          type: number
+      required:
+        - name
+        - areaHectares
+    FarmModel:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        areaHectares:
+          type: number
+      required:
+        - id
+        - name
+        - areaHectares
+    CreateHarvestDto:
+      type: object
+      properties:
+        year:
+          type: integer
+        crop:
+          type: string
+        plantedAreaHectares:
+          type: number
+      required:
+        - year
+        - crop
+        - plantedAreaHectares
+    HarvestModel:
+      type: object
+      properties:
+        id:
+          type: string
+        year:
+          type: integer
+        crop:
+          type: string
+        plantedAreaHectares:
+          type: number
+      required:
+        - id
+        - year
+        - crop
+        - plantedAreaHectares
+    CreateFarmerDto:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+        name:
+          type: string
+      required:
+        - documentNumber
+        - name
+    EditFarmerDto:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    FarmerModel:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+        name:
+          type: string
+      required:
+        - documentNumber
+        - name
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
