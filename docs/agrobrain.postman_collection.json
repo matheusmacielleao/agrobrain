@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "eb3dd9c4-6fb2-44c0-9572-30d5ee2c5374",
+		"name": "agrobrain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17641565"
+	},
+	"item": [
+		{
+			"name": "farmer",
+			"item": [
+				{
+					"name": "create farmer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"documentNumber\": \"03589182008\",\"name\": \"Fazendas Leão\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get farmers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"documentNumber\": \"03589182008\",\"name\": \"Fazendas Leão\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete farmer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"documentNumber\": \"03589182008\",\"name\": \"Fazendas Leão\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/35920335300",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"35920335300"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update farmer",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Fazendas Maria\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/35920335300",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"35920335300"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "farm",
+			"item": [
+				{
+					"name": "get farms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get farms from a farmer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get farms by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create farm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "harvest",
+			"item": [
+				{
+					"name": "create harvest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"year\": 2025,\n  \"crop\": \"cafe\",\n  \"plantedAreaHectares\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms/2/harvests",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms",
+								"2",
+								"harvests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get harvests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms/2/harvests",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms",
+								"2",
+								"harvests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get harvests by Year",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"city\": \"Springfield\",\n  \"state\": \"IL\",\n  \"totalAreaHectares\": 150.0,\n  \"utilAreaHectares\": 100.0,\n  \"vegetationAreaHectares\": 50.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/farmers/03589182008/farms/2/harvests",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"farmers",
+								"03589182008",
+								"farms",
+								"2",
+								"harvests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
