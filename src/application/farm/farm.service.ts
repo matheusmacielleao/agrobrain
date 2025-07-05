@@ -37,8 +37,11 @@ export class FarmService {
     return newFarm;
   }
 
-  async findAllFarmsFromFarmer(farmerDocument: string): Promise<FarmModel[]> {
-    return this.farmRepository.findAllByFarmerDocument(farmerDocument);
+  async findAllBy(
+    farmerDocument?: string,
+    includeCrops?: boolean,
+  ): Promise<FarmModel[]> {
+    return this.farmRepository.findAllBy(farmerDocument, includeCrops);
   }
 
   async findOneById(farmId: string): Promise<FarmModel | null> {

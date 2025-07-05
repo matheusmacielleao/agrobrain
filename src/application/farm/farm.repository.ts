@@ -18,9 +18,13 @@ export class FarmRepository {
   async findOneById(id: string): Promise<FarmModel | null> {
     return this.typeormRepo.findOneBy({ id });
   }
-  async findAllByFarmerDocument(farmerDocument: string): Promise<FarmModel[]> {
+  async findAllBy(
+    farmerDocument?: string,
+    includeCrops?: boolean,
+  ): Promise<FarmModel[]> {
     return this.typeormRepo.find({
       where: { farmer: { documentNumber: farmerDocument } },
+      relations: { harvests: includeCrops },
     });
   }
 }

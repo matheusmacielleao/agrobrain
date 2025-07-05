@@ -5,21 +5,28 @@ import {
   HttpException,
   Param,
   Post,
+  Query,
 } from '@nestjs/common';
 import { FarmService } from './farm.service';
 import { CreateFarmDto } from './dtos/create-farm.dto';
 import { HarvestService } from '../harvest/harvest.service';
 import { CreateHarvestDto } from '../harvest/dtos/create-harvest.dto';
 
-@Controller('/farmers/:documentNumber/farms')
+@Controller(['/farmers/:documentNumber/farms', '/farms'])
 export class FarmController {
   constructor(
     private readonly farmService: FarmService,
     private readonly harvestService: HarvestService,
   ) {}
   @Get()
-  async getAllFarmsFromFarmer(@Param('documentNumber') documentNumber: string) {
-    return this.farmService.findAllFarmsFromFarmer(documentNumber);
+  async findAllBy(
+    @Param('documentNumber') documentNumber: string,
+    @Query('includeCrops') includeCrops: string,
+  ) {
+    console.log(
+      `Finding all farms for document: ${documentNumber}, includeCrops: ${includeCrops}`,
+    );
+    return this.farmService.findAllBy(documentNumber, includeCrops === 'true');
   }
   @Post()
   async createFarm(
